@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Silvio Júnior — Infraestrutura & TI</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0a0f1e;color:#e2e8f0;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+
+  nav{position:sticky;top:0;z-index:100;background:rgba(10,15,30,0.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(99,179,237,0.15);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:56px}
+  .nav-logo{font-size:15px;font-weight:500;color:#63b3ed;letter-spacing:1px}
+  .nav-links{display:flex;gap:2rem}
+  .nav-links a{font-size:13px;color:#94a3b8;transition:color .2s}
+  .nav-links a:hover{color:#63b3ed}
+
+  .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:2rem;position:relative;overflow:hidden}
+  .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(99,179,237,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(99,179,237,0.04) 1px,transparent 1px);background-size:48px 48px}
+  .hero-glow{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(99,179,237,0.08) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+  .hero-content{position:relative;z-index:2;max-width:720px}
+  .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(99,179,237,0.1);border:1px solid rgba(99,179,237,0.25);border-radius:99px;padding:6px 16px;font-size:12px;color:#63b3ed;margin-bottom:2rem;letter-spacing:.5px}
+  .hero-badge span{width:7px;height:7px;border-radius:50%;background:#63b3ed;animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
+
+  .hero h1{font-size:clamp(2.4rem,6vw,4rem);font-weight:700;line-height:1.1;margin-bottom:1rem;letter-spacing:-1px}
+  .hero h1 .name{color:#ffffff;text-shadow:0 0 40px rgba(255,255,255,0.15)}
+  .hero h1 em{font-style:normal;color:#63b3ed;display:block;font-size:.65em;font-weight:400;margin-top:.3rem;letter-spacing:1px}
+
+  .hero-sub{font-size:1.1rem;color:#94a3b8;max-width:560px;margin:0 auto 2.5rem;line-height:1.7}
+  .hero-cta{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+  .btn-primary{background:#63b3ed;color:#0a0f1e;padding:12px 28px;border-radius:8px;font-size:14px;font-weight:600;transition:opacity .2s;cursor:pointer;display:inline-block}
+  .btn-primary:hover{opacity:.85}
+  .btn-outline{border:1px solid rgba(99,179,237,0.4);color:#63b3ed;padding:12px 28px;border-radius:8px;font-size:14px;transition:all .2s;cursor:pointer;display:inline-block}
+  .btn-outline:hover{background:rgba(99,179,237,0.08)}
+
+  section{padding:5rem 2rem;max-width:1080px;margin:0 auto}
+  .section-label{font-size:11px;letter-spacing:2px;color:#63b3ed;text-transform:uppercase;margin-bottom:.75rem}
+  .section-title{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:500;margin-bottom:1rem;letter-spacing:-.5px;color:#f1f5f9}
+  .section-desc{color:#94a3b8;font-size:15px;line-height:1.7;max-width:620px}
+  .divider{border:none;border-top:1px solid rgba(99,179,237,0.1);margin:0}
+
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;margin-top:3rem}
+  @media(max-width:680px){.about-grid{grid-template-columns:1fr}}
+  .about-avatar{width:200px;height:200px;border-radius:16px;background:linear-gradient(135deg,#0d1b2e,#1a3a5c);border:1px solid rgba(99,179,237,0.2);display:flex;align-items:center;justify-content:center;font-size:4rem;margin:0 auto}
+  .about-text p{color:#94a3b8;font-size:15px;line-height:1.8;margin-bottom:1rem}
+  .about-stats{display:flex;gap:2rem;margin-top:1.5rem}
+  .stat{text-align:center}
+  .stat-num{font-size:1.8rem;font-weight:500;color:#63b3ed}
+  .stat-lbl{font-size:11px;color:#64748b;letter-spacing:.5px;text-transform:uppercase}
+
+  .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;margin-top:3rem}
+  .skill-card{background:rgba(255,255,255,0.03);border:1px solid rgba(99,179,237,0.1);border-radius:12px;padding:1.5rem;transition:border-color .25s}
+  .skill-card:hover{border-color:rgba(99,179,237,0.3)}
+  .skill-card-header{display:flex;align-items:center;gap:12px;margin-bottom:1.25rem}
+  .skill-icon{width:40px;height:40px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+  .skill-icon.blue{background:rgba(99,179,237,0.12)}
+  .skill-icon.green{background:rgba(72,187,120,0.12)}
+  .skill-icon.orange{background:rgba(237,137,54,0.12)}
+  .skill-icon.purple{background:rgba(159,122,234,0.12)}
+  .skill-card h3{font-size:14px;font-weight:500;color:#e2e8f0}
+  .skill-card p{font-size:13px;color:#64748b;margin-bottom:1rem;line-height:1.6}
+  .tag-row{display:flex;flex-wrap:wrap;gap:6px}
+  .tag{background:rgba(99,179,237,0.08);border:1px solid rgba(99,179,237,0.18);color:#93c5fd;border-radius:99px;padding:3px 10px;font-size:11px;letter-spacing:.3px}
+  .tag.green{background:rgba(72,187,120,0.08);border-color:rgba(72,187,120,0.2);color:#6ee7b7}
+  .tag.orange{background:rgba(237,137,54,0.08);border-color:rgba(237,137,54,0.2);color:#fcd34d}
+  .tag.purple{background:rgba(159,122,234,0.08);border-color:rgba(159,122,234,0.2);color:#c4b5fd}
+
+  .bento{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:3rem}
+  @media(max-width:780px){.bento{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:480px){.bento{grid-template-columns:1fr}}
+  .bento-item{background:rgba(255,255,255,0.03);border:1px solid rgba(99,179,237,0.1);border-radius:12px;padding:1.25rem;transition:all .25s;position:relative;overflow:hidden}
+  .bento-item:hover{border-color:rgba(99,179,237,0.3);transform:translateY(-2px)}
+  .bento-item.wide{grid-column:span 2}
+  .bento-logo{font-size:28px;margin-bottom:.75rem}
+  .bento-name{font-size:14px;font-weight:500;color:#e2e8f0;margin-bottom:.25rem}
+  .bento-desc{font-size:12px;color:#64748b;line-height:1.5}
+  .bento-badge{position:absolute;top:12px;right:12px;background:rgba(72,187,120,0.15);border:1px solid rgba(72,187,120,0.3);color:#6ee7b7;font-size:10px;padding:2px 8px;border-radius:99px}
+
+  .dash-wrap{background:#0d1424;border:1px solid rgba(99,179,237,0.15);border-radius:14px;padding:1.25rem;margin-top:2rem;overflow:hidden}
+  .dash-bar{display:flex;gap:6px;margin-bottom:1rem;align-items:center}
+  .dash-dot{width:10px;height:10px;border-radius:50%}
+  .dash-inner{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.75rem;margin-bottom:.75rem}
+  @media(max-width:520px){.dash-inner{grid-template-columns:1fr}}
+  .dash-metric{background:rgba(255,255,255,0.04);border-radius:8px;padding:.75rem}
+  .dash-metric-val{font-size:1.4rem;font-weight:500;color:#63b3ed}
+  .dash-metric-lbl{font-size:11px;color:#64748b;margin-top:2px}
+  .dash-metric-sub{font-size:10px;margin-top:4px}
+  .dash-metric-sub.up{color:#6ee7b7}
+  .dash-metric-sub.warn{color:#fcd34d}
+  .dash-chart{background:rgba(255,255,255,0.03);border-radius:8px;padding:.75rem;margin-bottom:.75rem}
+  .dash-chart-title{font-size:11px;color:#64748b;margin-bottom:.75rem}
+  .bars{display:flex;align-items:flex-end;gap:4px;height:60px}
+  .bar{flex:1;border-radius:3px 3px 0 0;min-height:4px}
+  .dash-alerts{background:rgba(255,255,255,0.03);border-radius:8px;padding:.75rem}
+  .dash-alert-title{font-size:11px;color:#64748b;margin-bottom:.75rem}
+  .alert-item{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:11px;color:#94a3b8}
+  .alert-item:last-child{border:none}
+  .alert-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+
+  .timeline{margin-top:3rem;position:relative}
+  .timeline::before{content:'';position:absolute;left:16px;top:0;bottom:0;width:1px;background:rgba(99,179,237,0.15)}
+  .tl-item{padding-left:3rem;padding-bottom:2.5rem;position:relative}
+  .tl-dot{position:absolute;left:10px;top:4px;width:13px;height:13px;border-radius:50%;border:2px solid #63b3ed;background:#0a0f1e}
+  .tl-current .tl-dot{background:#63b3ed;box-shadow:0 0 0 4px rgba(99,179,237,0.15)}
+  .tl-date{font-size:11px;color:#63b3ed;letter-spacing:.5px;margin-bottom:.4rem;text-transform:uppercase}
+  .tl-role{font-size:16px;font-weight:500;color:#e2e8f0}
+  .tl-company{font-size:13px;color:#64748b;margin-bottom:.75rem}
+  .tl-desc{font-size:13px;color:#94a3b8;line-height:1.7}
+  .tl-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:.75rem}
+
+  /* CONTATO — novo visual */
+  .contact-wrapper{margin-top:3rem;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+  @media(max-width:680px){.contact-wrapper{grid-template-columns:1fr}}
+  .contact-intro p{color:#94a3b8;font-size:15px;line-height:1.8;margin-bottom:1.5rem}
+  .contact-highlight{display:flex;align-items:center;gap:12px;background:rgba(99,179,237,0.06);border:1px solid rgba(99,179,237,0.15);border-radius:12px;padding:1rem 1.25rem;margin-bottom:1rem}
+  .contact-highlight-icon{font-size:22px;flex-shrink:0}
+  .contact-highlight p:first-child{font-size:13px;font-weight:500;color:#e2e8f0}
+  .contact-highlight p:last-child{font-size:12px;color:#64748b;margin-top:2px}
+  .contact-links{display:flex;flex-direction:column;gap:.75rem}
+  .contact-link-item{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,0.03);border:1px solid rgba(99,179,237,0.1);border-radius:10px;padding:.9rem 1.1rem;transition:all .25s;cursor:pointer}
+  .contact-link-item:hover{border-color:rgba(99,179,237,0.35);background:rgba(99,179,237,0.06);transform:translateX(4px)}
+  .contact-link-icon{width:36px;height:36px;border-radius:8px;background:rgba(99,179,237,0.1);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+  .contact-link-info p:first-child{font-size:13px;font-weight:500;color:#e2e8f0}
+  .contact-link-info p:last-child{font-size:11px;color:#64748b;margin-top:1px}
+  .contact-link-arrow{margin-left:auto;color:#64748b;font-size:14px;transition:transform .2s}
+  .contact-link-item:hover .contact-link-arrow{transform:translateX(3px);color:#63b3ed}
+
+  footer{border-top:1px solid rgba(99,179,237,0.1);padding:2rem;text-align:center;font-size:12px;color:#334155;max-width:1080px;margin:0 auto}
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">SJ_</span>
+  <div class="nav-links">
+    <a href="#sobre">Sobre</a>
+    <a href="#skills">Skills</a>
+    <a href="#ferramentas">Ferramentas</a>
+    <a href="#experiencia">Experiência</a>
+    <a href="#contato">Contato</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-badge"><span></span>Disponível para novos desafios</div>
+    <h1>
+      <span class="name">Silvio Júnior</span>
+      <em>IT Operations &amp; Observabilidade</em>
+    </h1>
+    <p class="hero-sub">Profissional híbrido entre infraestrutura, monitoramento e desenvolvimento — transformando ambientes de TI em sistemas confiáveis, eficientes e escaláveis.</p>
+    <div class="hero-cta">
+      <a href="#contato" class="btn-primary">Entrar em contato</a>
+      <a href="#skills" class="btn-outline">Ver habilidades</a>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SOBRE -->
+<section id="sobre">
+  <p class="section-label">Sobre mim</p>
+  <div class="about-grid">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:1.5rem">
+      <div class="about-avatar">🧑‍💻</div>
+      <div class="about-stats">
+        <div class="stat"><div class="stat-num">3+</div><div class="stat-lbl">Anos de exp.</div></div>
+        <div class="stat"><div class="stat-num">50+</div><div class="stat-lbl">Hosts Zabbix</div></div>
+        <div class="stat"><div class="stat-num">100%</div><div class="stat-lbl">Foco em uptime</div></div>
+      </div>
+    </div>
+    <div class="about-text">
+      <p>Sou Assistente de TI em um grupo hoteleiro, atuando com perfil híbrido que une infraestrutura, monitoramento e desenvolvimento de soluções internas.</p>
+      <p>Responsável pela gestão e evolução dos ambientes de monitoramento com <strong style="color:#63b3ed;font-weight:500">Zabbix e Grafana</strong>, garantindo alta disponibilidade e performance dos sistemas. Atuo na resolução de incidentes, suporte a usuários e melhoria contínua dos processos operacionais.</p>
+      <p>Acredito que tecnologia só gera valor quando resolve problemas reais — por isso aplico automação e boas práticas para aumentar a eficiência e gerar impacto direto no negócio.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SKILLS -->
+<section id="skills">
+  <p class="section-label">Especialidades</p>
+  <h2 class="section-title">O que eu faço</h2>
+  <p class="section-desc">Conjunto de habilidades construído na prática, cobrindo desde a infraestrutura até o desenvolvimento de soluções internas.</p>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-card-header">
+        <div class="skill-icon blue">📡</div>
+        <h3>Monitoramento &amp; Observabilidade</h3>
+      </div>
+      <p>Gestão de ambientes de monitoramento com foco em disponibilidade, alertas inteligentes e dashboards operacionais em tempo real.</p>
+      <div class="tag-row">
+        <span class="tag">Zabbix</span><span class="tag">Grafana</span><span class="tag">SNMP</span><span class="tag">Alertas</span><span class="tag">SLA</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-header">
+        <div class="skill-icon green">🌐</div>
+        <h3>Redes &amp; Infraestrutura</h3>
+      </div>
+      <p>Administração de redes corporativas, configuração de equipamentos e suporte à infraestrutura de TI em ambiente hoteleiro de grande porte.</p>
+      <div class="tag-row">
+        <span class="tag green">TCP/IP</span><span class="tag green">VLANs</span><span class="tag green">DNS/DHCP</span><span class="tag green">Firewall</span><span class="tag green">Wi-Fi</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-header">
+        <div class="skill-icon orange">🖥️</div>
+        <h3>Servidores &amp; Virtualização</h3>
+      </div>
+      <p>Gestão de servidores físicos e virtuais, administração de Active Directory e ambientes Windows/Linux Server em produção.</p>
+      <div class="tag-row">
+        <span class="tag orange">Windows Server</span><span class="tag orange">Linux</span><span class="tag orange">VMware</span><span class="tag orange">Proxmox</span><span class="tag orange">AD/LDAP</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-header">
+        <div class="skill-icon purple">☁️</div>
+        <h3>Cloud &amp; DevOps</h3>
+      </div>
+      <p>Experiência com ambientes cloud e automação de processos de TI para ganho de eficiência operacional e escalabilidade.</p>
+      <div class="tag-row">
+        <span class="tag purple">AWS</span><span class="tag purple">Azure</span><span class="tag purple">Docker</span><span class="tag purple">Automação</span><span class="tag purple">CI/CD</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-header">
+        <div class="skill-icon blue">🏨</div>
+        <h3>Intranet &amp; Soluções Internas</h3>
+      </div>
+      <p>Desenvolvimento e gestão de portais internos, sistemas de suporte e soluções customizadas para o ambiente hoteleiro.</p>
+      <div class="tag-row">
+        <span class="tag">GLPI</span><span class="tag">Helpdesk</span><span class="tag">Intranet</span><span class="tag">Frontend</span><span class="tag">UX</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-header">
+        <div class="skill-icon green">🔒</div>
+        <h3>Segurança &amp; Disponibilidade</h3>
+      </div>
+      <p>Boas práticas de segurança da informação, gestão de acessos, backup e continuidade de serviços críticos.</p>
+      <div class="tag-row">
+        <span class="tag green">Firewall</span><span class="tag green">Backup</span><span class="tag green">VPN</span><span class="tag green">Alta disponib.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- FERRAMENTAS -->
+<section id="ferramentas">
+  <p class="section-label">Ferramentas</p>
+  <h2 class="section-title">Stack tecnológico</h2>
+  <p class="section-desc">Ferramentas que uso no dia a dia para monitorar, administrar e evoluir os ambientes sob minha responsabilidade.</p>
+  <div class="bento">
+    <div class="bento-item wide">
+      <div class="bento-logo">📊</div>
+      <div class="bento-name">Zabbix</div>
+      <div class="bento-desc">Monitoramento de infraestrutura completa — servidores, switches, links, serviços e métricas customizadas via templates e SNMP.</div>
+      <div class="bento-badge">Principal</div>
+    </div>
+    <div class="bento-item">
+      <div class="bento-logo">📈</div>
+      <div class="bento-name">Grafana</div>
+      <div class="bento-desc">Dashboards visuais e alertas integrados ao Zabbix para visualização em tempo real.</div>
+    </div>
+    <div class="bento-item">
+      <div class="bento-logo">🎫</div>
+      <div class="bento-name">GLPI</div>
+      <div class="bento-desc">Gestão de chamados, inventário e ativos de TI no ambiente hoteleiro.</div>
+    </div>
+    <div class="bento-item">
+      <div class="bento-logo">🪟</div>
+      <div class="bento-name">Windows Server</div>
+      <div class="bento-desc">Administração de AD, GPOs, DNS, DHCP e serviços corporativos.</div>
+    </div>
+    <div class="bento-item">
+      <div class="bento-logo">🐧</div>
+      <div class="bento-name">Linux</div>
+      <div class="bento-desc">Servidores Ubuntu/Debian, shell scripting e automações de rotina.</div>
+    </div>
+    <div class="bento-item">
+      <div class="bento-logo">🖥️</div>
+      <div class="bento-name">VMware / Proxmox</div>
+      <div class="bento-desc">Virtualização de servidores e gerenciamento de VMs em produção.</div>
+    </div>
+    <div class="bento-item">
+      <div class="bento-logo">☁️</div>
+      <div class="bento-name">AWS &amp; Azure</div>
+      <div class="bento-desc">Recursos cloud para workloads híbridos e serviços escaláveis.</div>
+    </div>
+    <div class="bento-item">
+      <div class="bento-logo">🐳</div>
+      <div class="bento-name">Docker</div>
+      <div class="bento-desc">Containerização de aplicações e serviços internos.</div>
+    </div>
+  </div>
+
+  <div class="dash-wrap">
+    <div class="dash-bar">
+      <div class="dash-dot" style="background:#ff5f57"></div>
+      <div class="dash-dot" style="background:#ffbd2e"></div>
+      <div class="dash-dot" style="background:#28c840"></div>
+      <span style="font-size:11px;color:#475569;margin-left:8px">Zabbix + Grafana — Ambiente de monitoramento</span>
+    </div>
+    <div class="dash-inner">
+      <div class="dash-metric">
+        <div class="dash-metric-val">98.7%</div>
+        <div class="dash-metric-lbl">Uptime geral</div>
+        <div class="dash-metric-sub up">↑ Últimas 24h</div>
+      </div>
+      <div class="dash-metric">
+        <div class="dash-metric-val">142</div>
+        <div class="dash-metric-lbl">Hosts monitorados</div>
+        <div class="dash-metric-sub up">↑ 3 novos esta semana</div>
+      </div>
+      <div class="dash-metric">
+        <div class="dash-metric-val">2</div>
+        <div class="dash-metric-lbl">Alertas ativos</div>
+        <div class="dash-metric-sub warn">⚠ Em investigação</div>
+      </div>
+    </div>
+    <div class="dash-chart">
+      <div class="dash-chart-title">Disponibilidade por serviço — últimas 12h</div>
+      <div class="bars" id="bars"></div>
+    </div>
+    <div class="dash-alerts">
+      <div class="dash-alert-title">Eventos recentes</div>
+      <div class="alert-item"><div class="alert-dot" style="background:#6ee7b7"></div>Switch Core — OK — Interface GigE 0/1 recuperada</div>
+      <div class="alert-item"><div class="alert-dot" style="background:#fcd34d"></div>SRV-HOTEL-02 — WARNING — CPU acima de 85% por 5min</div>
+      <div class="alert-item"><div class="alert-dot" style="background:#6ee7b7"></div>Link WAN Primary — OK — Latência normalizada</div>
+      <div class="alert-item"><div class="alert-dot" style="background:#f87171"></div>SRV-BACKUP-01 — PROBLEM — Serviço de backup parado</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- EXPERIÊNCIA -->
+<section id="experiencia">
+  <p class="section-label">Trajetória</p>
+  <h2 class="section-title">Experiência profissional</h2>
+  <div class="timeline">
+    <div class="tl-item tl-current">
+      <div class="tl-dot"></div>
+      <div class="tl-date">2024 — Atual</div>
+      <div class="tl-role">Assistente de TI</div>
+      <div class="tl-company">Grupo Ocaporã • Ipojuca, PE</div>
+      <div class="tl-desc">Gestão e evolução do ambiente de monitoramento com Zabbix, garantindo alta disponibilidade dos sistemas. Administração de redes, servidores e Active Directory. Desenvolvimento de soluções internas, suporte a usuários e resolução de incidentes críticos. Implementação de automações para aumento de eficiência operacional.</div>
+      <div class="tl-tags">
+        <span class="tag">Zabbix</span><span class="tag">Grafana</span><span class="tag green">Redes</span><span class="tag green">Windows Server</span><span class="tag orange">AD/LDAP</span><span class="tag purple">GLPI</span><span class="tag purple">LINUX</span><span class="tag purple">SQL</span>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-date">2023 — 2024</div>
+      <div class="tl-role">Auxiliar de TI</div>
+      <div class="tl-company">Grupo Ocaporã • Ipojuca, PE</div>
+      <div class="tl-desc">Atendimento a usuários, resolução de incidentes de hardware e software, configuração de estações de trabalho e suporte à infraestrutura de rede local.</div>
+      <div class="tl-tags">
+        <span class="tag">Suporte N1/N2</span><span class="tag green">Redes LAN</span><span class="tag orange">Windows</span>
+      </div>
+    </div>
+  </div>
+<div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-date">2022 — 2023</div>
+      <div class="tl-role">Jovem Aprendiz - TI</div>
+      <div class="tl-company">Nannai Resort&Spa • Ipojuca, PE</div>
+      <div class="tl-desc">Atendimento a usuários, resolução de incidentes de hardware e software, configuração de estações de trabalho e suporte à infraestrutura de rede local.</div>
+      <div class="tl-tags">
+        <span class="tag">Suporte N1/N2</span><span class="tag green">Redes LAN</span><span class="tag orange">Windows</span>
+      </div>
+    </div>
+</section>
+
+<hr class="divider">
+
+<!-- CONTATO -->
+<section id="contato">
+  <p class="section-label">Contato</p>
+  <h2 class="section-title">Entre em contato</h2>
+  <div class="contact-wrapper">
+    <div class="contact-intro">
+      <p>Aberto a novas oportunidades, projetos desafiadores e colaborações na área de infraestrutura e TI. Se você tem um problema para resolver ou uma ideia para construir, vamos conversar.</p>
+      <div class="contact-highlight">
+        <div class="contact-highlight-icon">⚡</div>
+        <div>
+          <p>Resposta rápida</p>
+          <p>Retorno em até 24 horas</p>
+        </div>
+      </div>
+      <div class="contact-highlight">
+        <div class="contact-highlight-icon">📍</div>
+        <div>
+          <p>Localização</p>
+          <p>Pernambuco, Brasil — remoto ou presencial</p>
+        </div>
+      </div>
+    </div>
+    <div class="contact-links">
+      <a href="mailto:sillviopaulo@gmail.com" class="contact-link-item">
+        <div class="contact-link-icon">✉️</div>
+        <div class="contact-link-info">
+          <p>E-mail</p>
+          <p>sillviopaulo@gmail.com</p>
+        </div>
+        <span class="contact-link-arrow">→</span>
+      </a>
+      <a href="www.linkedin.com/in/silviojunior04" target="_blank" class="contact-link-item">
+        <div class="contact-link-icon">💼</div>
+        <div class="contact-link-info">
+          <p>LinkedIn</p>
+          <p>linkedin.com/in/silviojunior04</p>
+        </div>
+        <span class="contact-link-arrow">→</span>
+      </a>
+      <a href="https://github.com/silviojunior04" target="_blank" class="contact-link-item">
+        <div class="contact-link-icon">🐙</div>
+        <div class="contact-link-info">
+          <p>GitHub</p>
+          <p>github.com/silviojunior04</p>
+        </div>
+        <span class="contact-link-arrow">→</span>
+      </a>
+      <a href="https://wa.me/5581989679428" target="_blank" class="contact-link-item">
+        <div class="contact-link-icon">💬</div>
+        <div class="contact-link-info">
+          <p>WhatsApp</p>
+          <p>Clique para conversar</p>
+        </div>
+        <span class="contact-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Silvio Júnior · Assistente de TI · Pernambuco, BR · 2026</p>
+</footer>
+
+<script>
+  const bars = document.getElementById('bars');
+  const vals = [92,87,99,95,78,100,88,97,91,84,96,99];
+  const colors = ['#63b3ed','#6ee7b7','#63b3ed','#6ee7b7','#fcd34d','#63b3ed','#6ee7b7','#63b3ed','#6ee7b7','#fcd34d','#63b3ed','#6ee7b7'];
+  vals.forEach((v,i) => {
+    const b = document.createElement('div');
+    b.className = 'bar';
+    b.style.height = (v * 0.6) + 'px';
+    b.style.background = colors[i];
+    b.style.opacity = '.8';
+    b.style.flex = '1';
+    b.style.borderRadius = '3px 3px 0 0';
+    bars.appendChild(b);
+  });
+</script>
+</body>
+</html>
