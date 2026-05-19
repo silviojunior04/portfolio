@@ -50,7 +50,7 @@
   .stat-num{font-size:1.8rem;font-weight:500;color:#63b3ed}
   .stat-lbl{font-size:11px;color:#64748b;letter-spacing:.5px;text-transform:uppercase}
 
-  .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;margin-top:3rem}
+  .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-top:3rem}
   .skill-card{background:rgba(255,255,255,0.03);border:1px solid rgba(99,179,237,0.1);border-radius:12px;padding:1.5rem;transition:border-color .25s}
   .skill-card:hover{border-color:rgba(99,179,237,0.3)}
   .skill-card-header{display:flex;align-items:center;gap:12px;margin-bottom:1.25rem}
@@ -126,6 +126,70 @@
   .contact-link-info p:last-child{font-size:11px;color:#64748b;margin-top:1px}
   .contact-link-arrow{margin-left:auto;color:#64748b;font-size:14px;transition:transform .2s}
   .contact-link-item:hover .contact-link-arrow{transform:translateX(3px);color:#63b3ed}
+
+
+  @media(max-width:768px){
+
+    section{
+      padding:4rem 1rem;
+    }
+
+    .hero{
+      padding:1.5rem;
+      min-height:90vh;
+    }
+
+    .hero h1{
+      font-size:2.2rem;
+    }
+
+    .hero-sub{
+      font-size:0.95rem;
+      line-height:1.6;
+    }
+
+    .nav-links{
+      gap:1rem;
+      overflow-x:auto;
+      scrollbar-width:none;
+    }
+
+    .nav-links::-webkit-scrollbar{
+      display:none;
+    }
+
+    .skills-grid{
+      grid-template-columns:1fr;
+    }
+
+    .skill-card{
+      padding:1.2rem;
+    }
+
+    .bento{
+      grid-template-columns:1fr;
+    }
+
+    .bento-item.wide{
+      grid-column:span 1;
+    }
+
+    .about-stats{
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:1rem;
+    }
+
+    .contact-wrapper{
+      grid-template-columns:1fr;
+      gap:2rem;
+    }
+
+    .dash-wrap{
+      overflow-x:auto;
+    }
+
+  }
 
   footer{border-top:1px solid rgba(99,179,237,0.1);padding:2rem;text-align:center;font-size:12px;color:#334155;max-width:1080px;margin:0 auto}
 </style>
@@ -370,8 +434,7 @@
         <span class="tag">Suporte N1/N2</span><span class="tag green">Redes LAN</span><span class="tag orange">Windows</span>
       </div>
     </div>
-  </div>
-<div class="tl-item">
+    <div class="tl-item">
       <div class="tl-dot"></div>
       <div class="tl-date">2022 — 2023</div>
       <div class="tl-role">Jovem Aprendiz - TI</div>
@@ -381,6 +444,7 @@
         <span class="tag">Suporte N1/N2</span><span class="tag green">Redes LAN</span><span class="tag orange">Windows</span>
       </div>
     </div>
+  </div>
 </section>
 
 <hr class="divider">
