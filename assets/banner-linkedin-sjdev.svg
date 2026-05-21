@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1584 396">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1"><stop offset="0" stop-color="#0D0D0D"/><stop offset="1" stop-color="#121512"/></linearGradient>
+    <radialGradient id="glow" cx=".72" cy=".42" r=".45"><stop offset="0" stop-color="#4B5E3A" stop-opacity=".34"/><stop offset="1" stop-color="#4B5E3A" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="1584" height="396" fill="url(#bg)"/><rect width="1584" height="396" fill="url(#glow)"/>
+  <path d="M0 310 H310 L390 344 H700" stroke="#4B5E3A" stroke-opacity=".45" fill="none" stroke-width="2"/>
+  <path d="M1170 65 H1410 L1488 20 H1584" stroke="#4B5E3A" stroke-opacity=".45" fill="none" stroke-width="2"/>
+  <g transform="translate(760 80) scale(.46)">
+    <path d="M100 250 L155 197 L155 229 L130 250 L155 271 L155 303 Z" fill="#4B5E3A"/>
+    <path d="M400 250 L345 197 L345 229 L370 250 L345 271 L345 303 Z" fill="#4B5E3A"/>
+    <path d="M172 145 H310 L288 174 H205 L205 210 H292 L330 248 L330 330 L292 366 H170 L196 336 H275 L275 294 H188 L150 256 L150 184 Z" fill="#4B5E3A"/>
+    <path d="M320 145 H356 L382 171 V330 L346 366 H286 L322 330 H334 V182 Z" fill="#6F8456"/>
+  </g>
+  <text x="990" y="150" fill="#4B5E3A" font-family="Arial, Helvetica, sans-serif" font-size="72" font-weight="800">SJ</text>
+  <text x="1088" y="150" fill="#D8DDD3" font-family="Arial, Helvetica, sans-serif" font-size="72" font-weight="800">dev</text>
+  <text x="906" y="224" fill="#D8DDD3" font-family="Arial, Helvetica, sans-serif" font-size="38" font-weight="500">&gt; Código que resolve.</text>
+  <text x="988" y="284" fill="#6F8456" font-family="monospace" font-size="22" letter-spacing="10">Code. Create. Elevate.</text>
+</svg>
